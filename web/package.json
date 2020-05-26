@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/fairnightzz/Tinderawl#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "vue-property-decorator": "^8.4.2"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
