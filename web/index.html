@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<div id="app">
+<!--div id="app">
 	<h1>{{ title }}</h1>
 
 	<input type="text" v-model="price">
@@ -19,10 +19,18 @@
 	<accordion v-for="(item,i) in items" :item="item" :key="i"></accordion>
 
 	<hr>
-	
+
 	<list></list>
 
-</div>
+	<hr>
+
+	<div v-if="posts!=null">
+		<div v-for="post in posts.data" :key="post.id" v-text="post.title"></div>
+
+	</div>
+
+
+</div-->
 
 <script src="./dist/app.js"></script>
 </body>
