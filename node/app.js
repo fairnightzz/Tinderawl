@@ -31,12 +31,12 @@ function onCreate(){
         } 
     });
     
-    db.run('CREATE TABLE IF NOT EXISTS users(name,remaining,like)',function(error){
+    db.run('CREATE TABLE IF NOT EXISTS users(name varchar(50),remaining varchar(255),like varchar(255))',function(error){
         if(error){
             console.log (error);
             return;
         }
-        db.run('INSERT INTO users(name,remaining,like) VALUES(?,?,?)',["Zhehai","1,3,5","2"])
+        db.run('INSERT INTO users(name varchar(255),remaining varchar(255),like varchar(255)) VALUES(?,?,?)',["Zhehai","1,3,5","2"])
 
     })
     
@@ -57,6 +57,7 @@ onCreate();
 /*
 TO DO:
 
+0. Set up the data types look at id?
 1. Function that creates an id and adds it to users table
 2. Download all pictures and name them 1-N
 3. Function get_pic(id) sends a pic num in remaining
