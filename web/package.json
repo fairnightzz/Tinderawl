@@ -1,15 +1,35 @@
 {
   "name": "tinderwal",
   "version": "1.0.0",
-  "description": "Browse thousands of pics of your favourite foot model",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack src/main.js dist/build.js"
+    "dev": "npm run development",
+    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "npm run development -- --watch",
+    "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "prod": "npm run production",
+    "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fairnightzz/Tinderawl.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fairnightzz/Tinderawl/issues"
+  },
+  "homepage": "https://github.com/fairnightzz/Tinderawl#readme",
+  "dependencies": {},
   "devDependencies": {
-    "webpack": "^4.43.0"
+    "cross-env": "^7.0.2",
+    "laravel-mix": "^5.0.4",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
   }
 }
