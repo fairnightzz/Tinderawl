@@ -17,7 +17,7 @@ router.get('/:userID', (req, res, next) => {
         })
     }
     else{
-        res.status(200).json({
+        res.status(201).json({
             message: 'A rando user id' ,
             id: id
         })
@@ -25,7 +25,7 @@ router.get('/:userID', (req, res, next) => {
 })
 
 router.post('/', (req,res, next) => {
-    res.status(200).json({
+    res.status(201).json({
         message: 'Handinling post requests'
     })
 });
