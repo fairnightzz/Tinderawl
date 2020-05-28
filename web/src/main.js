@@ -1,18 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { BootstrapVue } from 'bootstrap-vue';
+import VueTippy, { TippyComponent } from 'vue-tippy'
 
 import App from './App.vue'
-import Main from './components/Main.vue'
-import Leaderboard from './components/Leaderboard.vue'
-import Profile from './components/Profile.vue'
-import Notfound from './components/Notfound.vue'
+import Login from './pages/Login.vue'
+import Main from './pages/Main.vue'
+import Leaderboard from './pages/Leaderboard.vue'
+import Profile from './pages/Profile.vue'
+import Notfound from './pages/Notfound.vue'
+
+//styles
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueRouter);
+Vue.use(BootstrapVue);
+Vue.use(VueTippy);
+Vue.component('tippy', TippyComponent);
+
 Vue.config.productionTip = false;
 
 const router = new VueRouter({
 	routes: [
 		{ path: '/', component: Main },
+		{ path: '/login', component: Login },
 		{ path: '/leaderboard', component: Leaderboard },
 		{ path: '/profile/:id', component: Profile },
 		{ path: '*', component: Notfound}
