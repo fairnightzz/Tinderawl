@@ -1,30 +1,25 @@
 <template>
 	<div id="app">
 
-		<b-navbar variant="info" fixed>
+		<nav class="navbar">
+			<ul class="navbar-nav">
 
-			<b-navbar-brand>T!nderwal</b-navbar-brand>
+				<li class="navbar-item">
+					<font-awesome-icon :icon="['fas', 'fire']" />					
 
-			<b-collapse id="nav-collapse" is-nav>
+				</li>
 
-				<b-navbar-nav>
-					<b-nav-item><router-link to="/">Home</router-link></b-nav-item>
-					<b-nav-item><router-link to="/leaderboard">Leaderboard</router-link></b-nav-item>
-					<b-nav-item><router-link to="/login">Login</router-link></b-nav-item>
-				</b-navbar-nav>
+			</ul>
+		</nav>	
 
-			</b-collapse>
-
-		</b-navbar>
-
-
-		<router-view></router-view>
+		<main>
+			<router-view></router-view>
+		</main>
 
 	</div>
 </template>
 
 <script>
-
 
 export default {
 	name: 'App',
@@ -35,5 +30,42 @@ export default {
 </script>
 
 <style>
+	:root {
+		font-size: 16px;
+
+		--text-primary: gray;
+		--text-secondary: white;
+		--bg-primary: teal;
+		--bg-seconday: darkgray;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	body::-webkit-scrollbar {
+		width: 0.25rem
+	}
+
+	body::-webkit-scrollbar-track {
+		background: darkgray;
+	}
+
+	body::-webkit-scrollbar-thumb {
+		background: gray;
+	}
+
+	main {
+		margin-left: 5rem;
+	}
+
+	.navbar {
+		width: 5em;
+		height: 100vh;
+		position: fixed;
+		background-color: var(--bg-primary);
+	}
+
 
 </style>

@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { BootstrapVue } from 'bootstrap-vue';
 import VueTippy, { TippyComponent } from 'vue-tippy'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFire } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './App.vue'
 import Login from './pages/Login.vue'
@@ -16,8 +19,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
+
 Vue.use(VueTippy);
 Vue.component('tippy', TippyComponent);
+
+library.add(faFire);
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false;
 
