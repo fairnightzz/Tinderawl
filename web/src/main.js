@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import { BootstrapVue } from 'bootstrap-vue';
 import VueTippy, { TippyComponent } from 'vue-tippy'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFire } from '@fortawesome/free-solid-svg-icons'
+import { faFire, faMedal, faPoll, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './App.vue'
@@ -23,7 +23,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueTippy);
 Vue.component('tippy', TippyComponent);
 
-library.add(faFire);
+library.add(faFire, faMedal, faPoll, faSignOutAlt);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false;
