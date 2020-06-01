@@ -3,26 +3,27 @@
 
 		<nav class="navbar-main">
 			<ul class="navbar-nav">
+				<!-- TODO: make this not hardcoded, also make the home icon stand out more-->
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="home">
+					<font-awesome-icon icon="fire" size="2x" />	
+				</router-link>
 
-				<li class="nav-item nav-logo">
-					<font-awesome-icon icon="fire" size="2x" />			
-				</li>
-
-				<li class="nav-item">
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="vote">
 					<font-awesome-icon icon="poll" size="2x"/>			
-				</li>
+				</router-link>
 
-				<li class="nav-item">
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="gallery">
+					<font-awesome-icon icon="images" size="2x"/>			
+				</router-link>
+
+				<router-link to="/leaderboard" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="results">
 					<font-awesome-icon icon="medal" size="2x"/>			
-				</li>
+				</router-link>
 
-				<li class="nav-item">
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="sign out">
 					<font-awesome-icon icon="sign-out-alt" size="2x"/>			
-				</li>
+				</router-link>
 				
-
-				
-
 			</ul>
 		</nav>	
 
