@@ -25,8 +25,17 @@ router.get('/:userID', (req, res, next) => {
 })
 
 router.post('/', (req,res, next) => {
+
+    const request = {
+        id: req.body.id,
+        pic: req.body.pic
+
+    }
+
+
     res.status(201).json({
-        message: 'Handinling post requests'
+        message: 'Handinling post requests',
+        othermessage: request
     })
 });
 module.exports = router;
