@@ -12,7 +12,7 @@
 					<font-awesome-icon icon="poll" size="2x"/>			
 				</router-link>
 
-				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="gallery">
+				<router-link to="/gallery" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="gallery">
 					<font-awesome-icon icon="images" size="2x"/>			
 				</router-link>
 
