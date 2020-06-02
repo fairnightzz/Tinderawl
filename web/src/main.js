@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import App from './App.vue'
 import Login from './pages/Login.vue'
 import Main from './pages/Main.vue'
+import Vote from './pages/Vote.vue'
 import Gallery from './pages/Gallery.vue'
 import Leaderboard from './pages/Leaderboard.vue'
 import Profile from './pages/Profile.vue'
@@ -33,6 +34,7 @@ const router = new VueRouter({
 	routes: [
 		{ path: '/', component: Main },
 		{ path: '/login', component: Login },
+		{ path: '/vote', component: Vote },
 		{ path: '/gallery', component: Gallery },
 		{ path: '/leaderboard', component: Leaderboard },
 		{ path: '/profile/:id', component: Profile },

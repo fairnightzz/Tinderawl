@@ -8,7 +8,7 @@
 					<font-awesome-icon icon="fire" size="2x" />	
 				</router-link>
 
-				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="vote">
+				<router-link to="/vote" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="vote">
 					<font-awesome-icon icon="poll" size="2x"/>			
 				</router-link>
 
