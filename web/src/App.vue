@@ -4,23 +4,23 @@
 		<nav class="navbar-main">
 			<ul class="navbar-nav">
 				<!-- TODO: make this not hardcoded, also make the home icon stand out more-->
-				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="home">
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="Home">
 					<font-awesome-icon icon="fire" size="2x" />	
 				</router-link>
 
-				<router-link to="/vote" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="vote">
+				<router-link to="/vote" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="Vote">
 					<font-awesome-icon icon="poll" size="2x"/>			
 				</router-link>
 
-				<router-link to="/gallery" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="gallery">
+				<router-link to="/gallery" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="Gallery">
 					<font-awesome-icon icon="images" size="2x"/>			
 				</router-link>
 
-				<router-link to="/leaderboard" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="results">
+				<router-link to="/leaderboard" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="Results">
 					<font-awesome-icon icon="medal" size="2x"/>			
 				</router-link>
 
-				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="sign out">
+				<router-link to="/" class="nav-item" v-tippy="{placement: 'right', arrow: 'true'}" content="Sign Out">
 					<font-awesome-icon icon="sign-out-alt" size="2x"/>			
 				</router-link>
 				

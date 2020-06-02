@@ -4,10 +4,12 @@
 
         <div style="text-align: center"> 
             <draggable-card 
-                v-for="i in 5" 
-                :key="i" 
+                v-for="(card,i) in cards" 
+                :key="card" 
                 v-bind:style="{'z-index': -i}"
-                :isCurrent="i === 1"
+                :isCurrent="i === 0"
+                :title="card.title"
+                @destroyCard="removeCard"
             ></draggable-card>
         </div>
 
@@ -22,6 +24,34 @@ export default {
     components: {
         DraggableCard
     },
+
+    data: function() {
+        return {
+            cards: [
+                {
+                    title: 'card1'
+                },
+                {
+                    title: 'card2'
+                },
+                {
+                    title: 'card3'
+                },
+                {
+                    title: 'card4'
+                },
+            ]
+        }
+    },
+
+    methods: {
+        removeCard: function() {
+            this.cards.shift();
+            console.log('event: destroy card');
+            
+            console.log(this.cards)
+        }
+    }
 }
 </script>
 
