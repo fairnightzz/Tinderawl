@@ -16,6 +16,9 @@ app.use(cors());
 //Initialize routes
 app.use('/create',createRoutes);
 
+//Express serving images
+app.use('/static',express.static('Pictures'))
+
 //Errors
 app.use((req,res, next) => {
     const error = new Error('Not found');

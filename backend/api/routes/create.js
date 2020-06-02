@@ -18,7 +18,6 @@ router.post('/', (req, res, next) => {
         else{
             console.log("Made database");
         }
-
     })
 
 
