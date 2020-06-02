@@ -8,9 +8,9 @@ router.post('/', (req, res, next) => {
 
     //Check if the user has already signed up
     const request = {
-        discordID: req.body.id
+        ID: req.body.id
     }
-    
+    var discordID = parseInt(request.ID);
     let db = new sqlite3.Database('./databases/database.db', function(error){
         if (error){
             console.log(error);
@@ -20,18 +20,43 @@ router.post('/', (req, res, next) => {
         }
     })
 
+    let sql = 'SELECT id FROM user WHERE user.id = ?';
+    db.get(sql,[parseInt(discordID)], (err,row) => {
+        if (err) {
+            console.log(err)
+        }
+        else{
+            if (row){
+                console.log("The user exists")
+                discordID = -1;
+
+            }
+            else{
+                console.log("Adding the user to the database")
+                
+                db.run('INSERT INTO user(id,name,pic,remaining,like) VALUES(?,?,?,?,?)',[parseInt(discordID),"Zhehai","linktopic","adf","DASF"],function(err){
+                    if (err){
+                        return console.log(err.message);
+                    }
+                });
+            }
+        }
+
+        db.close(function(error){
+            if (error){
+                console.log(error)
+            }
+            else{
+                console.log("DB successfully closed")
+            }
+        })
+    })
 
 
-
-    //If good: Generate code
-    const charac = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var code = "";
-    for (var i = 0; i<7;i++){
-        code+=charac.charAt(Math.round(Math.random()*(charac.length-1)));
-    }
+    
 
     res.status(201).json({
-        code: code
+        code: discordID
     })
 })
 
