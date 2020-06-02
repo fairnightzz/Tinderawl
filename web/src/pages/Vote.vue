@@ -3,7 +3,12 @@
         <h1>Vote</h1>
 
         <div style="text-align: center"> 
-            <draggable-card style="margin: auto;"></draggable-card>
+            <draggable-card 
+                v-for="i in 5" 
+                :key="i" 
+                v-bind:style="{'z-index': -i}"
+                :isCurrent="i === 1"
+            ></draggable-card>
         </div>
 
     </div>
