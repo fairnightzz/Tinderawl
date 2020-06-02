@@ -1,10 +1,12 @@
 <template>
     <div 
-        class="card-main" 
+        v-bind:class="{'card-main': true, 'animateCardRelease': !this.isInteracting, 'top-card': this.isCurrent}" 
         ref="interactElement"
         v-bind:style="{'transform': `${translate} ${rotate}`}"
     >
+        <p>{{this.isCurrent}}</p>
     </div>
+
 </template>
 
 <script>
@@ -14,17 +16,19 @@ export default {
     name: 'DraggableCard',
 
     props: [
-
+        'isCurrent'
     ],
 
     data: function() {
         return {
+            acceptThreshold: 200,
             maxTiltDistance: 400,
             maxTilt: 60,
             position: {
                 x: 0,
                 y: 0,
             },
+            isInteracting: false,
         }
     },
 
@@ -41,21 +45,36 @@ export default {
             var tiltBound = (angle > 90) ? 180-this.maxTilt : this.maxTilt;
             var adjustedAngle = (tiltBound > 90) ? this.clamp(angle,90,tiltBound) : this.clamp(angle,tiltBound,90);
             return `rotate(${adjustedAngle-90}deg)`;
-            
         }
     },
 
     mounted: function() {
         interact(this.$refs.interactElement).draggable({
             //inertia: true,
+            onstart: () => {
+                this.isInteracting = true;
+            },
             onmove: event => {
                 this.setPosition(
                     this.position.x + event.dx,
                     this.position.y + event.dy
                 );
+
             },
             onend: () => {
-                this.setPosition(0,0); //reset position
+
+                //check if we are liking or disliking the card
+                if (this.position.x < -this.acceptThreshold) {
+                    this.setPosition(-1000,this.position.y);
+                    
+                } else if (this.position.x > this.acceptThreshold) {
+                    this.setPosition(1000,this.position.y);
+
+                } else {
+                    this.setPosition(0,0); //reset position
+                }
+                
+                this.isInteracting = false;
             },
         });
     },
@@ -81,11 +100,34 @@ export default {
 <style scoped>
 
     .card-main {
-        width: 200px;
+        position: absolute;
+        width: 300px;
         height: 400px;
+
+        left: 50%;
+        right: 50%;
 
         background-color: brown;
         border-radius: 20px;
+        margin: auto;
+    }
+
+    .animateCardRelease {
+        transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .top-card {
+        background-color: blue;
+        color: white;
+    }
+
+    @keyframes animateCardRelease {
+        from {
+            
+        }
+        to {
+
+        }
     }
 
 </style>
