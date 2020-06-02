@@ -8,9 +8,12 @@ router.post('/', (req, res, next) => {
 
     //Check if the user has already signed up
     const request = {
-        ID: req.body.id
+        ID: req.body.id,
+        name = req.body.name,
+        avatar = req.body.avatar
     }
     var discordID = parseInt(request.ID);
+    
     let db = new sqlite3.Database('./databases/database.db', function(error){
         if (error){
             console.log(error);
@@ -37,7 +40,7 @@ router.post('/', (req, res, next) => {
                         console.log("DB successfully closed")
                     }
                 })
-                res.status(201).json({
+                res.status(200).json({
                     code: discordID
                 })
                 
@@ -47,7 +50,7 @@ router.post('/', (req, res, next) => {
                 llist = image.randoList(function(response){
                     console.log(response,"hello");
                     
-                    db.run('INSERT INTO user(id,name,pic,remaining,like) VALUES(?,?,?,?,?)',[discordID,"Zhehai","linktopic","adf","DASF"],function(err){
+                    db.run('INSERT INTO user(id,name,pic,remaining,like) VALUES(?,?,?,?,?)',[discordID,request.name,request.avatar,response.join(),""],function(err){
                         if (err){
                             return console.log(err.message);
                         }
