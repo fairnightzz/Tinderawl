@@ -35,6 +35,7 @@ class Commands(commands.Cog):
         channel  = await person.create_dm()
         code = create_code()
         await channel.send(code)
+        await channel.send(ctx.author.avatar_url)
         
 
 
