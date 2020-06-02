@@ -1,5 +1,5 @@
 const express = require('express');
-
+var image = require("../image");
 const router = express.Router();
 
 const sqlite3 = require('sqlite3').verbose();
@@ -29,34 +29,45 @@ router.post('/', (req, res, next) => {
             if (row){
                 console.log("The user exists")
                 discordID = -1;
-
+                db.close(function(error){
+                    if (error){
+                        console.log(error)
+                    }
+                    else{
+                        console.log("DB successfully closed")
+                    }
+                })
+                res.status(201).json({
+                    code: discordID
+                })
+                
             }
             else{
                 console.log("Adding the user to the database")
-                
-                db.run('INSERT INTO user(id,name,pic,remaining,like) VALUES(?,?,?,?,?)',[parseInt(discordID),"Zhehai","linktopic","adf","DASF"],function(err){
-                    if (err){
-                        return console.log(err.message);
-                    }
-                });
+                llist = image.randoList(function(response){
+                    console.log(response,"hello");
+                    
+                    db.run('INSERT INTO user(id,name,pic,remaining,like) VALUES(?,?,?,?,?)',[discordID,"Zhehai","linktopic","adf","DASF"],function(err){
+                        if (err){
+                            return console.log(err.message);
+                        }
+                    });
+                    db.close(function(error){
+                        if (error){
+                            console.log(error)
+                        }
+                        else{
+                            console.log("DB successfully closed")
+                        }
+                    })
+                    res.status(201).json({
+                        code: discordID
+                    })
+                })
             }
         }
 
-        db.close(function(error){
-            if (error){
-                console.log(error)
-            }
-            else{
-                console.log("DB successfully closed")
-            }
-        })
-    })
-
-
-    
-
-    res.status(201).json({
-        code: discordID
+        
     })
 })
 
