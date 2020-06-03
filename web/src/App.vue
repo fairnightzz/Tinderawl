@@ -63,8 +63,18 @@ export default {
 
 		--text-primary: gray;
 		--text-secondary: white;
-		--bg-primary: teal;
-		--bg-seconday: darkblue;
+		
+		--bg-primary: #008080;
+		--bg-primary-dark: 	#006868;
+
+		--bg-secondary: #0C2B74;
+		--bg-secondary-dark: #07215D;
+	}
+
+	html {
+		max-width: 100%;
+		overflow-x: hidden;
+		overflow-y: scroll;
 	}
 
 	body {
@@ -114,7 +124,7 @@ export default {
 	}
 
 	.nav-item:hover {
-		background-color: var(--bg-seconday);
+		background-color: var(--bg-primary-dark);
 	}
 
 	.nav-item svg {
@@ -131,7 +141,7 @@ export default {
 	}
 
 	.nav-logo {
-		background-color: var(--bg-seconday);
+		background-color: var(--bg-primary-dark);
 	}
 
 </style>

@@ -57,7 +57,7 @@ export default {
         height: 100%;
         width: 100%;
 
-        background-color: black;
+        background-color: var(--bg-secondary);
         color: white;
 
     }
