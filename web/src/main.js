@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { store } from './store/store.js'
 import { BootstrapVue } from 'bootstrap-vue';
 import VueTippy, { TippyComponent } from 'vue-tippy'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -54,6 +55,7 @@ new Vue({
 	},
 
 	router,
+	store,
 	render: h => h(App),
 
 }).$mount('#app');
