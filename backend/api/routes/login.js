@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
-const jwt = require('jsonwebtoken')
+
 
 router.post("/", (req,res,next) =>{
     //Check if code is right
