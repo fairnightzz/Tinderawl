@@ -41,7 +41,7 @@ router.get('/',checkAuth,(req,res,next) =>{
 
                     for (var i = 0;i<numorder.length;i++){
                         console.log(numorder[i])
-                        nameorder.push(namepicdict[numorder[i].toString()]);
+                        nameorder.push("http://localhost:3000/static/"+namepicdict[numorder[i].toString()]);
                     }
                         
                     db.close(function(error){

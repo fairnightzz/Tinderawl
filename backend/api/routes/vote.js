@@ -42,7 +42,7 @@ router.get('/',checkAuth,(req,res, next) => {
 
                         for (var i = 0;i<order.length;i++){
                             console.log(order[i])
-                            nameorder.push(namepicdict[order[i].toString()]);
+                            nameorder.push("http://localhost:3000/static/"+namepicdict[order[i].toString()]);
                         }
                             
                         db.close(function(error){
