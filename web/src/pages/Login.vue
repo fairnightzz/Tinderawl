@@ -12,7 +12,8 @@
 
             <h1>Login</h1>
 
-            <div class="col align-self-center" style="background-color: var(--bg-primary); height: 10rem; text-align: center">
+            <div class="container" style="background-color: var(--bg-primary); height: 10rem; text-align: center">
+            <div class="row justify-content-md-center">
 
                 <input
                     id="code"
@@ -20,11 +21,16 @@
                     v-model="form.code"
                     type="text"
                     required
-                    placeholder="Enter code"
+                    autocomplete="off"
+                    placeholder="Enter Code"
                     minlength = 6
                     maxlength = 6
                 >
+            </div>
 
+            <div class="row justify-content-md-center">
+                <button class="input-submit" @click="onSubmit">Login</button>
+            </div>
 
             </div>
 
@@ -65,33 +71,61 @@ export default {
 <style scoped>
 
     .input-field {
-        top: 50%;
-        position: relative;
 
-        border: 0;
-        border-radius: 4px;
+        margin-top: 2rem;
+
         appearance: none;
-        background-color: var(--bg-primary-light);
-
+        outline: 0;
+        border: 1px solid rgba(255,255,255,0.4);
+        background-color: rgba(255,255,255,0.2);
+        border-radius: 4px;
+        
         text-align: center;
+        
         color: white;
+        caret-color: var(--bg-primary);
 
         height: 3rem;
-        width: 32rem;
+        width: 18rem;
+
+        transition: all .2s;
     }
 
     .input-field::placeholder {
         color: white;
     }
 
-    /*
     .input-field:hover {
-        
-    }*/
+        background-color: rgba(255,255,255,0.4);
+    }
 
     .input-field:focus {
         outline: none;
         background-color: white;
+        color: var(--bg-primary);
+        width: 20rem;
+    }
+
+    .input-submit {
+
+        margin-top: 1rem;
+
+        appearance: none;
+        outline: 0;
+        border: 0;
+        border-radius: 4px;
+
+        background-color: white;
+        color: var(--bg-primary);
+
+        /*box-shadow: 0 2px 5px black;*/
+
+        height: 3rem;
+        width: 18rem;
+    }
+
+    .input-submit:hover {
+        background-color: rgb(240,240,240);
     }
 
 </style>
