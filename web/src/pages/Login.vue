@@ -1,20 +1,11 @@
 <template>
-    <div>
-
-
-        <!--input type="text" name="code" v-model="creds" placeholder="Input code here"/>
-        <button type="button" @click="login">Submit</button-->
-
-        <!-- NOTE: tippy gets blurry when zoomed in on chrome -->
-        <!--b-button type="button" variant="primary" content="tooltip" v-tippy="{placement: 'bottom'}">Tippy</b-button-->
+    <div class="login-main">
 
         <div class="container">
 
             <h1>Login</h1>
 
-            <div class="container" style="background-color: var(--bg-primary); height: 10rem; text-align: center">
             <div class="row justify-content-md-center">
-
                 <input
                     id="code"
                     class="input-field"
@@ -22,9 +13,10 @@
                     type="text"
                     required
                     autocomplete="off"
+                    spellcheck="false"
                     placeholder="Enter Code"
-                    minlength = 6
-                    maxlength = 6
+                    minlength = 7
+                    maxlength = 7
                 >
             </div>
 
@@ -32,7 +24,7 @@
                 <button class="input-submit" @click="onSubmit">Login</button>
             </div>
 
-            </div>
+            <p>{{ formStatus }}</p>
 
         </div>
 
@@ -49,14 +41,28 @@ export default {
         return {
             form: {
                 code: '',
-            }
+            },
+            formStatus: 'unsubmitted'
         }
     },
 
     methods: {
         onSubmit(evt) {
             evt.preventDefault();
-            console.log(JSON.stringify(this.form));
+            const inputtedCode = this.form.code;
+
+            //validate form
+            if (inputtedCode.length < 6) { return; }
+
+            this.$store.dispatch('auth/login', inputtedCode)
+            .then(
+                data => {
+                    this.formStatus = `success: ${data}`;
+                },
+                err => {
+                    this.formStatus = `failure: ${err}`;
+                }
+            );
 
         },
         onReset(evt) { //clear form
@@ -69,6 +75,14 @@ export default {
 </script>
 
 <style scoped>
+
+    .login-main {
+        background-color: var(--bg-primary);
+        width: auto;
+        height: 100vh;
+        margin: 0px;
+        padding: 2rem;
+    }
 
     .input-field {
 

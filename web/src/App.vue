@@ -2,15 +2,11 @@
 	<div id="app">
 
 		<!-- Prob move transition logic inside child -->
-		<transition name="navbar">
-			<navbar v-if="showNav" />
-		</transition>
+		<navbar/>
 
-		<main>
-			<button type="button" class="btn btn-primary" @click="showNav=!showNav">Hide Nav</button>
-			<router-link to="/login">Sign in page</router-link>
-			<router-view></router-view>
-		</main>
+		<router-view class="page"></router-view>
+
+		
 		
 	</div>
 </template>
@@ -28,9 +24,9 @@ export default {
 
 	data: function() {
 		return {
-			showNav: true
 		}
 	},
+
 
 }
 </script>
@@ -50,6 +46,7 @@ export default {
 		--bg-secondary-dark: #07215D;
 
 		--navbar-width: 5rem;
+
 	}
 
 	html {
@@ -75,8 +72,11 @@ export default {
 		background: gray;
 	}
 
-	main {
+	.page {
 		margin-left: var(--navbar-width);
 	}
+
+
+
 
 </style>

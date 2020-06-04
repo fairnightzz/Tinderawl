@@ -9,12 +9,11 @@ class AuthService {
             passcode: passcode
         })
         .then(response => {
-            if (response.data.accessToken != null) {
 
+            if (response.data.accessToken != null) {
                 //set local storage
                 localStorage.setItem('localData', JSON.stringify({accessToken: response.data.accessToken}));
             }
-
             return response.data;
         });
     }
