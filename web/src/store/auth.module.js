@@ -13,10 +13,6 @@ export const auth = {
 
     state: initialState,
 
-    getters: {
-
-    },
-
     mutations: {
         loginSuccess(state, payload) {
             state.accessToken = payload.accessToken;

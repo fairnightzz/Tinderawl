@@ -1,7 +1,13 @@
 <template>
     <div>
+        <transition name="navbar">
+            <div v-if="showNav" class="navbar-main">
 
-        <nav class="navbar-main">
+            </div>
+        </transition>
+
+        <transition name="fade">
+        <nav v-if="showNav" class="navbar-main">
 			<ul class="navbar-nav">
 
                 <router-link 
@@ -16,8 +22,17 @@
                 </router-link>
 				
 			</ul>
-		</nav>	
+		</nav>
+        </transition>
 
+
+        
+        <button 
+            type="button" class="btn btn-primary" 
+            style="position: absolute; z-index: 12; right:0px; " 
+            @click="showNav=!showNav"
+        >Toggle nav</button>
+    
     </div>
 </template>
 
@@ -25,8 +40,15 @@
 export default {
     name: 'Navbar',
 
+    computed: {
+		isLoggedIn() {
+			return this.$store.state.auth.loggedIn;
+		}
+    },
+    
     data: function() {
         return {
+            showNav: true,
             navItems: [
                 {
                     route: '/',
@@ -53,7 +75,7 @@ export default {
                     classes: 'nav-item'
                 },
                 {
-                    route: '/',
+                    route: '/login',
                     iconName: 'sign-out-alt',
                     toolTip: 'Sign Out',
                     classes: 'nav-item'
@@ -112,5 +134,39 @@ export default {
 	.nav-logo {
 		background-color: var(--bg-primary-dark);
 	}
+
+    .navbar-enter-active {
+        animation: navbarAnim 1s;
+    }
+    .navbar-leave-active {
+        animation: navbarAnim 1s reverse;
+    }
+
+    @keyframes navbarAnim {
+        0% {
+            transform: scaleX(40);
+        }
+        100% {
+            transform: scaleX(1);
+        }
+    }
+
+    .fade-enter-active {
+        animation: fadeAnim .2s;
+    }
+
+    .fade-leave-active {
+        animation: fadeAnim .2s reverse;
+    }
+
+    @keyframes fadeAnim {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
 
 </style>
