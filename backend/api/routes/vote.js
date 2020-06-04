@@ -28,6 +28,7 @@ router.get('/',checkAuth,(req,res, next) => {
                 if (row){
                     //Take the list and make it into file list
                     var nameorder = []
+                    var namepicdict = {};
                     var order = row.remaining.split(",")
                     
                     let newsql = 'SELECT name,num FROM pic';
@@ -36,12 +37,13 @@ router.get('/',checkAuth,(req,res, next) => {
                             throw err;
                         }
                         row1.forEach((row2) =>{
-                            
-                            if(order.includes(row2.num.toString())){
-                                nameorder.push(row2.name);
-                            }
-                            
+                            namepicdict[row2.num] = row2.name;
                         })
+
+                        for (var i = 0;i<order.length;i++){
+                            console.log(order[i])
+                            nameorder.push(namepicdict[order[i].toString()]);
+                        }
                             
                         db.close(function(error){
                             if (error){
@@ -98,50 +100,52 @@ router.post('/',checkAuth,(req,res,next) => {
             console.log(err,"lmao")
         }
         else{
-                if (row){
-                    //Check if the first thing num is equal to the name of request
-                    
-                    sql = 'SELECT name FROM pic WHERE num = ?';
-                    db.get(sql,[parseInt(row.remaining.split(",")[0])], (err,row1) =>{
-                        if (row1){
-                            if(row1.name == request.pic){
-                                //Remove the pic from remaining
+            if (row){
+                //Check if the first thing num is equal to the name of request
+                var picarray = row.remaining.split(",")
+                sql = 'SELECT name FROM pic WHERE num = ?';
+                db.get(sql,[parseInt(picarray[0])], (err,row1) =>{
+                    if (row1){
+                        console.log(row1.name)
+                        if(row1.name == request.pic){
+                            //Remove the pic from remaining
+                            picarray.shift()
+                            sql = 'UPDATE user SET remaining = ? WHERE id = ?';
+                            db.get(sql,[picarray.join(),request.id], (err,row2) =>{
+                                if (request.verdict == true){
+                                    //If verdict right, add 1 to vote
+                                    sql = 'UPDATE pic SET vote = vote+1 WHERE name = ?';
+                                    db.get(sql,[request.pic], (err,row3) => {
+                                        if (err){
+                                            console.log("error",err)
+                                        }
+                                        else{
+                                            db.close(function(error){
+                                                if (error){
+                                                    console.log(error)
+                                                }
+                                                else{
+                                                    console.log("DB successfully closed")
+                                                }
+                                            })
+                                            res.status(200).json({
+                                                pic:"updated"
+                                            })
+                                        }
+                                    })
+                                }
+                                else{
+                                    db.close()
+                                    res.status(200).json({
+                                        pic:"updated"
+                                    })
+                                }
+                                
+                                
+                            })
+                            
 
-
-                                //If verdict right, add 1 to vote
-                                let nextsql = 'UPDATE pic SET vote = vote+1 WHERE name = ?';
-                                db.get(nextsql,[request.pic], (err,row3) => {
-                                    if (err){
-                                        console.log("error",err)
-                                    }
-                                    else{
-                                        db.close(function(error){
-                                            if (error){
-                                                console.log(error)
-                                            }
-                                            else{
-                                                console.log("DB successfully closed")
-                                            }
-                                        })
-                                        res.status(200).json({
-                                            pic:"updated"
-                                        })
-                                    }
-                                })
-                            }
-                            else{
-                                db.close(function(error){
-                                    if (error){
-                                        console.log(error)
-                                    }
-                                    else{
-                                        console.log("DB successfully closed")
-                                    }
-                                })
-                                res.status(409).json({
-                                    pic: "Not the pic that needs to be removed"
-                                })
-                            }
+                            
                         }
                         else{
                             db.close(function(error){
@@ -153,24 +157,38 @@ router.post('/',checkAuth,(req,res,next) => {
                                 }
                             })
                             res.status(409).json({
-                                pic: "pic not found in db, shouldnt happen"
+                                pic: "Not the pic that needs to be removed"
                             })
                         }
-                    })
-                }
-                else{
-                    db.close(function(error){
-                        if (error){
-                            console.log(error)
-                        }
-                        else{
-                            console.log("DB successfully closed")
-                        }
-                    })
-                    res.status(409).json({
-                        message:"User not found in database"
-                    })
-                }
+                    }
+                    else{
+                        db.close(function(error){
+                            if (error){
+                                console.log(error)
+                            }
+                            else{
+                                console.log("DB successfully closed")
+                            }
+                        })
+                        res.status(409).json({
+                            pic: "pic not found in db, shouldnt happen"
+                        })
+                    }
+                })
+            }
+            else{
+                db.close(function(error){
+                    if (error){
+                        console.log(error)
+                    }
+                    else{
+                        console.log("DB successfully closed")
+                    }
+                })
+                res.status(409).json({
+                    message:"User not found in database"
+                })
+            }
         }
     })
 
