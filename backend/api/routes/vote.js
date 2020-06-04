@@ -103,13 +103,14 @@ router.post('/',checkAuth,(req,res,next) => {
             if (row){
                 //Check if the first thing num is equal to the name of request
                 var picarray = row.remaining.split(",")
+                var likearray = row.like.split(",")
                 sql = 'SELECT name FROM pic WHERE num = ?';
                 db.get(sql,[parseInt(picarray[0])], (err,row1) =>{
                     if (row1){
                         console.log(row1.name)
                         if(row1.name == request.pic){
                             //Remove the pic from remaining
-                            picarray.shift()
+                            var votedPic = picarray.shift()
                             sql = 'UPDATE user SET remaining = ? WHERE id = ?';
                             db.get(sql,[picarray.join(),request.id], (err,row2) =>{
                                 if (request.verdict == true){
@@ -120,17 +121,23 @@ router.post('/',checkAuth,(req,res,next) => {
                                             console.log("error",err)
                                         }
                                         else{
-                                            db.close(function(error){
-                                                if (error){
-                                                    console.log(error)
-                                                }
-                                                else{
-                                                    console.log("DB successfully closed")
-                                                }
+                                            likearray.push(votedPic);
+                                            console.log(likearray)
+                                            sql = 'UPDATE user SET like = ? WHERE id = ?';
+                                            db.get(sql,[likearray.join(),request.id],(err,row4) =>{
+                                                db.close(function(error){
+                                                    if (error){
+                                                        console.log(error)
+                                                    }
+                                                    else{
+                                                        console.log("DB successfully closed")
+                                                    }
+                                                })
+                                                res.status(200).json({
+                                                    pic:"updated"
+                                                })
                                             })
-                                            res.status(200).json({
-                                                pic:"updated"
-                                            })
+                                            
                                         }
                                     })
                                 }
