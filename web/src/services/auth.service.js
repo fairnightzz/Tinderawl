@@ -11,10 +11,14 @@ class AuthService {
             if (response.data.accessToken != null) {
 
                 //set local storage
+                localStorage.setItem('localData', JSON.stringify({accessToken: response.data.accessToken}));
             }
 
             return response.data;
         });
+    }
+    logout() {
+        localStorage.removeItem('localData');
     }
 }
 
