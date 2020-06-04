@@ -34,7 +34,7 @@ fs.readdirSync("./Pictures/").forEach(file => {
 
 
 
-db.run('CREATE TABLE IF NOT EXISTS pic(num int,name varchar(255))',function(error){
+db.run('CREATE TABLE IF NOT EXISTS pic(num int,name varchar(255),vote int)',function(error){
     if(error){
         console.log (error);
         return;
@@ -44,7 +44,7 @@ db.run('CREATE TABLE IF NOT EXISTS pic(num int,name varchar(255))',function(erro
     
     fs.readdirSync(picpath).forEach(file => {
         
-        db.run('INSERT INTO pic(num,name) VALUES(?,?)',[count,file],function(err){
+        db.run('INSERT INTO pic(num,name,vote) VALUES(?,?,?)',[count,file,0],function(err){
             if (err){
                 return console.log(err.message);
             }
