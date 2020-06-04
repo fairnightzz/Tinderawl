@@ -12,28 +12,20 @@
 
             <h1>Login</h1>
 
-            <div class="col align-self-center">
-            <b-card>
-                
-                <b-form @submit="onSubmit" @reset="onReset">
+            <div class="col align-self-center" style="background-color: var(--bg-primary); height: 10rem; text-align: center">
 
-                    <b-form-group>
-                        <b-form-input
-                            id="code"
-                            v-model="form.code"
-                            type="text"
-                            required
-                            placeholder="Enter code"
-                            minlength = 6
-                            maxlength = 6
-                        ></b-form-input>
+                <input
+                    id="code"
+                    class="input-field"
+                    v-model="form.code"
+                    type="text"
+                    required
+                    placeholder="Enter code"
+                    minlength = 6
+                    maxlength = 6
+                >
 
-                    </b-form-group>
 
-                    <b-button type="submit" variant="primary">Submit!</b-button>
-
-                </b-form>
-            </b-card>
             </div>
 
         </div>
@@ -71,5 +63,35 @@ export default {
 </script>
 
 <style scoped>
+
+    .input-field {
+        top: 50%;
+        position: relative;
+
+        border: 0;
+        border-radius: 4px;
+        appearance: none;
+        background-color: var(--bg-primary-light);
+
+        text-align: center;
+        color: white;
+
+        height: 3rem;
+        width: 32rem;
+    }
+
+    .input-field::placeholder {
+        color: white;
+    }
+
+    /*
+    .input-field:hover {
+        
+    }*/
+
+    .input-field:focus {
+        outline: none;
+        background-color: white;
+    }
 
 </style>

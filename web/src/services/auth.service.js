@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8080';
+import { API_URL } from '../config.js';
 
 class AuthService {
+    
     login(passcode) {
         return axios.post(API_URL + '/login', {
             passcode: passcode

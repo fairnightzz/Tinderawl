@@ -1,14 +1,21 @@
-//import axios from 'axios'
+import axios from 'axios'
+
+import { API_URL } from '../config.js';
 
 class UserService {
 
+    getGalleryPictures() {
+        return axios.get(API_URL + '/gallery', {}, {
+            headers: getAuthToken()
+        });
+    }
     /*
     makeVote(pic, vote) {
         axios.get()
     }
     */
 
-    getAuthToken() { //grab accesstoken from localstorage to use when sending authorized requests
+    static getAuthToken() { //grab accesstoken from localstorage to use when sending authorized requests
         const localData = JSON.parse(localStorage.getItem('localData'));
 
         if (localData != null && localData.accessToken != null) {
