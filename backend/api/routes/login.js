@@ -33,11 +33,27 @@ router.post("/", (req,res,next) =>{
                     {
                         expiresIn:"1h"
                     })
+                    db.close(function(error){
+                        if (error){
+                            console.log(error)
+                        }
+                        else{
+                            console.log("DB successfully closed")
+                        }
+                    })
                     res.status(200).json({
                         accessToken: token
                     });
                 }
                 else{
+                    db.close(function(error){
+                        if (error){
+                            console.log(error)
+                        }
+                        else{
+                            console.log("DB successfully closed")
+                        }
+                    })
                     res.status(409).json({
                         accessToken: null
                     })
