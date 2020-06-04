@@ -27,7 +27,7 @@ router.post('/', (req, res, next) => {
             }
         })
 
-        let sql = 'SELECT id FROM user WHERE user.id = ?';
+        let sql = 'SELECT id,passcode FROM user WHERE user.id = ?';
         db.get(sql,[parseInt(discordID)], (err,row) => {
             if (err) {
                 console.log(err)
@@ -45,7 +45,7 @@ router.post('/', (req, res, next) => {
                         }
                     })
                     res.status(409).json({
-                        code: "ERROR"
+                        passcode: row.passcode
                     })
                     
                 }
@@ -84,7 +84,7 @@ router.post('/', (req, res, next) => {
     }
     else{
         res.status(401).json({
-            code:"ERROR"
+            passcode:"ERROR"
         })
     }
     

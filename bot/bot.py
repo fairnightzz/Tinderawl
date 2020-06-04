@@ -1,4 +1,4 @@
-from privatekeylmao import TOKEN
+from privatekeylmao import TOKEN,password
 
 import discord
 import os
@@ -12,8 +12,7 @@ import requests
 started = False
 
 client = commands.Bot(command_prefix=">")
-def create_code():
-    return 0
+
 
 @client.event
 async def on_ready():
@@ -33,9 +32,12 @@ class Commands(commands.Cog):
     async def request(self,ctx):
         person = ctx.author
         channel  = await person.create_dm()
-        code = create_code()
-        await channel.send(code)
-        await channel.send(ctx.author.avatar_url)
+        
+        lmao = requests.post('http://localhost:3000/create', json={\
+        'id': str(ctx.author.id), 'name': str(ctx.author)[:str(ctx.author).find("#")],\
+        'avatar':str(ctx.author.avatar_url),'key':password})
+        json = lmao.json()
+        await channel.send(json['passcode'])
         
 
 
