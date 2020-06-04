@@ -9,7 +9,7 @@ let db = new sqlite3.Database('./databases/database.db', function(error){
 })
 
 
-db.run('CREATE TABLE IF NOT EXISTS user(id int,name varchar(255),pic varchar(255), remaining varchar(255), like varchar(255))',function(error){
+db.run('CREATE TABLE IF NOT EXISTS user(id int,passcode varchar(10),name varchar(255),pic varchar(255), remaining varchar(255), like varchar(255))',function(error){
     if(error){
         console.log (error);
         return;
