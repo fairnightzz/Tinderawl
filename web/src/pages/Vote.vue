@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h1>Vote</h1>
 
         <div style="text-align: center"> 
             <draggable-card 

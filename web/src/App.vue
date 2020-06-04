@@ -4,9 +4,7 @@
 		<!-- Prob move transition logic inside child -->
 		<navbar/>
 
-		<router-view class="page"></router-view>
-
-		
+		<router-view class="page"/>
 		
 	</div>
 </template>
@@ -75,8 +73,5 @@ export default {
 	.page {
 		margin-left: var(--navbar-width);
 	}
-
-
-
 
 </style>

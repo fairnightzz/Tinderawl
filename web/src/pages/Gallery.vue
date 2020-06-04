@@ -1,17 +1,17 @@
 <template>
     <div>
 
-        <h1>Gallery</h1>
-
-            
-
         <div class="gallery-grid">
 
             <div 
-                v-for="i in 20" :key="i"
-                v-bind:class="{'image-card': true, 'image-tall': [2,6].includes(i), 'image-wide': [2,9,16].includes(i)}" 
+                v-for="(galleryItem, i) in galleryItems" :key="i"
+                v-bind:class="{'image-card': true, 'image-tall': [].includes(i), 'image-wide': [].includes(i)}" 
                 v-bind:style="{'--animation-order': i}"
-            >Item {{i}}</div>
+            >
+                <!--p>Item {{i}}</p-->
+                <!--img src="https://cdn.discordapp.com/avatars/485120501807579144/cab57c05abc948c09aca10ffc25d1301.webp?size=1024"/-->
+                <img :src="galleryItem"/>
+            </div>
 
         </div>
 
@@ -19,8 +19,35 @@
 </template>
 
 <script>
+import UserService from '../services/user.service'
+
 export default {
-    name: 'Gallery'
+    name: 'Gallery',
+
+    data: function() {
+        return {
+            /*
+            galleryItems: [
+                'a','b','c','d','e','f','g','h','i'
+            ],
+            */
+            galleryItems: []
+        }
+    },
+
+    mounted: function() {
+        
+        UserService.getGalleryPictures()
+        .then(
+            data => {
+                this.galleryItems = data.pics;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+        
+    },
 }
 </script>
 
@@ -60,6 +87,13 @@ export default {
         background-color: var(--bg-secondary);
         color: white;
 
+        cursor: pointer;
+
+    }
+
+    .image-card img {
+        width: 100%;
+        height: 100%;
     }
 
     .image-card:hover {

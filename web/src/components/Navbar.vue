@@ -1,13 +1,8 @@
 <template>
     <div>
         
-        <transition 
-            name="navbar"
-            v-on:after-leave="pushToLogin"
-        >
-            <div v-if="isLoggedIn" class="navbar-main">
-
-            </div>
+        <transition name="navbar" v-on:after-leave="pushToLogin">
+        <div v-if="isLoggedIn" class="navbar-main"></div>
         </transition>
 
         <transition name="fade">

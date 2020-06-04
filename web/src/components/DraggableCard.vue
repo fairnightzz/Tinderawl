@@ -5,7 +5,6 @@
         ref="interactElement"
         v-bind:style="{'transform': `${translate} ${rotate}`}"
     >
-        <p>{{this.isCurrent}}</p>
         <p>{{this.title}}</p>
     </div>
 
@@ -77,13 +76,15 @@ export default {
                 //check if we are liking or disliking the card
                 if (this.position.x < -acceptThreshold) {
                     this.setPosition(-1000,this.position.y);
-                    
                     this.destroyCard();
+                    //send request
+                    
 
                 } else if (this.position.x > acceptThreshold) {
                     this.setPosition(1000,this.position.y);
-
                     this.destroyCard();
+
+
                 } else {
                     this.setPosition(0,0); //reset position
                 }
@@ -127,17 +128,20 @@ export default {
 
     .card-main {
         position: absolute;
-        width: 300px;
-        height: 400px;
+        width: 400px;
+        height: 600px;
 
         left: 50%;
         right: 50%;
+        top: 25%;
 
         background-color: brown;
         border-radius: 20px;
+        border: 0;
         margin: auto;
 
         pointer-events: none;
+
     }
 
     .animateCardRelease {
@@ -148,6 +152,7 @@ export default {
         background-color: blue;
         color: white;
         pointer-events: auto;
+        box-shadow: 2px 2px 5px black;
     }
 
     @keyframes animateCardRelease {

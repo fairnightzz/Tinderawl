@@ -5,8 +5,11 @@ import { API_URL } from '../config.js';
 class UserService {
 
     getGalleryPictures() {
-        return axios.get(API_URL + '/gallery', {}, {
-            headers: getAuthToken()
+
+        return axios.get(API_URL + '/gallery', {
+            headers: UserService.getAuthToken()
+        }).then(response => {
+            return response.data;
         });
     }
     /*
