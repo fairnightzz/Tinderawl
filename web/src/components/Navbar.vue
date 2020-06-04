@@ -1,13 +1,17 @@
 <template>
     <div>
-        <transition name="navbar">
-            <div v-if="showNav" class="navbar-main">
+        
+        <transition 
+            name="navbar"
+            v-on:after-leave="pushToLogin"
+        >
+            <div v-if="isLoggedIn" class="navbar-main">
 
             </div>
         </transition>
 
         <transition name="fade">
-        <nav v-if="showNav" class="navbar-main">
+        <nav v-if="isLoggedIn" class="navbar-main">
 			<ul class="navbar-nav">
 
                 <router-link 
@@ -20,19 +24,20 @@
                 >
                     <font-awesome-icon :icon="navItem.iconName" size="2x" />	
                 </router-link>
+
+                <a
+                    v-tippy="{placement: 'right', arrow: 'true'}"
+                    content="Sign Out"
+                    class="nav-item nav-item-a"
+                    href @click.prevent="handleLogout"
+                >
+                    <font-awesome-icon icon="sign-out-alt" size="2x" />	
+                </a>
 				
 			</ul>
 		</nav>
         </transition>
 
-
-        
-        <button 
-            type="button" class="btn btn-primary" 
-            style="position: absolute; z-index: 12; right:0px; " 
-            @click="showNav=!showNav"
-        >Toggle nav</button>
-    
     </div>
 </template>
 
@@ -51,7 +56,7 @@ export default {
             showNav: true,
             navItems: [
                 {
-                    route: '/',
+                    route: '/main',
                     iconName: 'fire',
                     toolTip: 'Home',
                     classes: 'nav-item'
@@ -74,15 +79,19 @@ export default {
                     toolTip: 'Results',
                     classes: 'nav-item'
                 },
-                {
-                    route: '/login',
-                    iconName: 'sign-out-alt',
-                    toolTip: 'Sign Out',
-                    classes: 'nav-item'
-                },
             ]
         }
     },
+    methods: {
+        handleLogout() {
+            console.log('logout');
+            this.$store.dispatch('auth/logout');
+            
+        },
+        pushToLogin() {
+            this.$router.push('/login');
+        }
+    }
 }
 </script>
 
@@ -114,7 +123,7 @@ export default {
 		width: 100%;
 		text-align: center;
 	}
-
+    
 	.nav-item:hover {
 		background-color: var(--bg-primary-dark);
 	}
@@ -131,6 +140,14 @@ export default {
 		margin-top: auto;
 	}
 
+    .nav-item-a {
+        cursor: pointer;
+    }
+    
+    .nav-item-a:focus {
+        outline: none;
+    }
+
 	.nav-logo {
 		background-color: var(--bg-primary-dark);
 	}
@@ -144,7 +161,7 @@ export default {
 
     @keyframes navbarAnim {
         0% {
-            transform: scaleX(40);
+            transform: scaleX(60);
         }
         100% {
             transform: scaleX(1);

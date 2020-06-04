@@ -3,8 +3,6 @@
 
         <div class="container">
 
-            <h1>Login</h1>
-
             <div class="row justify-content-md-center">
                 <input
                     id="code"
@@ -24,7 +22,7 @@
                 <button class="input-submit" @click="onSubmit">Login</button>
             </div>
 
-            <p>{{ formStatus }}</p>
+            <!--p>{{ formStatus }}</p-->
 
         </div>
 
@@ -58,6 +56,7 @@ export default {
             .then(
                 data => {
                     this.formStatus = `success: ${data}`;
+                    this.$router.push('/main');
                 },
                 err => {
                     this.formStatus = `failure: ${err}`;
