@@ -1,9 +1,11 @@
 
 import AuthService from '../services/auth.service.js'
 
-const initialState = {
+const localData = JSON.parse(localStorage.getItem('localData'));
 
-};
+const initialState = (localData != null)
+    ? { accessToken: localData.accessToken, loggedIn: true }
+    : { accessToken: null, loggedIn: false };
 
 export const auth = {
 
@@ -17,12 +19,20 @@ export const auth = {
 
     mutations: {
         loginSuccess(state, payload) {
+            state.accessToken = payload.accessToken;
+            state.loggedIn = true;
             console.log(`loginSuccess: recieved token ${payload.accessToken}`);
-            //payload.accessToken
-            //update state to logged in, also set token
+
         },
         loginFailed(state) {
+            state.accessToken = null;
+            state.loggedIn = false;
             console.log(`loginFailed`);
+        },
+        logout(state) {
+            state.accessToken = null;
+            state.loggedIn = false;
+            console.log(`Logged Out`);
         }
     },
 
@@ -40,6 +50,10 @@ export const auth = {
                 }
             );
         },
+        logout({ commit }) {
+            AuthService.logout();
+            commit('logout');
+        }
     },
 
 }
