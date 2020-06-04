@@ -65,10 +65,11 @@ router.get('/',checkAuth,(req,res,next) =>{
                 
             }
             else{
+                db.close()
                 res.status(400).json({
                     pics:"nope"
                 })
-                db.close()
+                
             }
         }
     })
