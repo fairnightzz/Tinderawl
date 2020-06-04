@@ -8,6 +8,7 @@ const app = express();
 const createRoutes = require('./api/routes/create');
 const voteRoutes = require('./api/routes/vote');
 const loginRoutes = require('./api/routes/login');
+const galleryRoutes = require('./api/routes/gallery');
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
@@ -18,6 +19,7 @@ app.use(cors());
 app.use('/create',createRoutes);
 app.use('/vote',voteRoutes);
 app.use('/login',loginRoutes);
+app.use('/gallery',galleryRoutes);
 
 //Express serving images
 app.use('/static',express.static('Pictures'))
