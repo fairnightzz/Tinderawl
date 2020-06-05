@@ -9,6 +9,7 @@ const createRoutes = require('./api/routes/create');
 const voteRoutes = require('./api/routes/vote');
 const loginRoutes = require('./api/routes/login');
 const galleryRoutes = require('./api/routes/gallery');
+const userRoutes = require('./api/routes/user');
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
@@ -20,6 +21,7 @@ app.use('/create',createRoutes);
 app.use('/vote',voteRoutes);
 app.use('/login',loginRoutes);
 app.use('/gallery',galleryRoutes);
+app.use('/user',userRoutes);
 
 //Express serving images
 app.use('/static',express.static('Pictures'))

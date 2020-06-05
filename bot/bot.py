@@ -34,7 +34,7 @@ class Commands(commands.Cog):
         channel  = await person.create_dm()
         
         lmao = requests.post('http://localhost:3000/create', json={\
-        'id': str(ctx.author.id), 'name': str(ctx.author)[:str(ctx.author).find("#")],\
+        'id': str(ctx.author.id), 'name': str(ctx.author),\
         'avatar':str(ctx.author.avatar_url),'key':password})
         json = lmao.json()
         await channel.send(json['passcode'])
