@@ -2,7 +2,16 @@
 
     <div class="login-main">
 
-        <div class="container">
+        <div class="container" style="padding-top: 3rem">
+
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto" style="padding-right: .5rem">
+                <font-awesome-icon style="color: white" icon="fire" size="3x" />	
+                </div>
+                <div class="col-md-auto" style="padding-left: .5rem">
+                <h1 style="color: white">Tinderwal.</h1>
+                </div>
+            </div>
 
             <div class="row justify-content-md-center">
                 <input
@@ -141,5 +150,6 @@ export default {
     .input-submit:hover {
         background-color: rgb(240,240,240);
     }
+
 
 </style>

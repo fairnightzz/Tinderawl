@@ -4,7 +4,7 @@ import { store } from './store/store.js'
 import { BootstrapVue } from 'bootstrap-vue'
 import VueTippy, { TippyComponent } from 'vue-tippy'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFire, faMedal, faPoll, faSignOutAlt, faImages } from '@fortawesome/free-solid-svg-icons'
+import { faFire, faMedal, faPoll, faSignOutAlt, faImages, faTimes, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 import App from './App.vue'
@@ -18,7 +18,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueTippy);
 Vue.component('tippy', TippyComponent);
 
-library.add(faFire, faMedal, faPoll, faSignOutAlt, faImages);
+library.add(faFire, faMedal, faPoll, faSignOutAlt, faImages, faTimes, faHeart);
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false;

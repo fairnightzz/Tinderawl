@@ -4,9 +4,12 @@
         v-bind:class="{'card-main': true, 'animateCardRelease': !this.isInteracting, 'top-card': this.isCurrent}" 
         ref="interactElement"
         v-bind:style="{'transform': `${translate} ${rotate}`}"
+        @acceptCard="handleAccept"
+        @rejectCard="handleReject"
     >
+    
         <p>{{this.imageURL}}</p>
-        <img :src="this.imageURL" style="width: 100%"/>
+        <img :src="this.imageURL" style="width: 100%;"/>
     </div>
 
 </template>
@@ -77,32 +80,10 @@ export default {
                 const {acceptThreshold} = this.$options.static;
                 //check if we are liking or disliking the card
                 if (this.position.x < -acceptThreshold) { //swipe left
-                    this.setPosition(-1000,this.position.y);
-                    this.destroyCard();
-                    //send request
-                    UserService.makeVote(this.imageURL,false)
-                    .then(
-                        data => {
-                            console.log(data);
-                        },
-                        err => {
-                            console.log(err);
-                        }
-                    );
+                    this.handleReject();
 
                 } else if (this.position.x > acceptThreshold) {
-                    this.setPosition(1000,this.position.y);
-                    this.destroyCard();
-
-                    UserService.makeVote(this.imageURL,true)
-                    .then(
-                        data => {
-                            console.log(data);
-                        },
-                        err => {
-                            console.log(err);
-                        }
-                    );
+                    this.handleAccept();
 
                 } else {
                     this.setPosition(0,0); //reset position
@@ -138,6 +119,36 @@ export default {
             if (val > max) return max;
             return val;
         },
+        handleReject() {
+
+            this.setPosition(-1000,this.position.y);
+            this.destroyCard();
+            //send request
+            UserService.makeVote(this.imageURL,false)
+            .then(
+                data => {
+                    console.log(data);
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        },
+        handleAccept() {
+
+            this.setPosition(1000,this.position.y);
+            this.destroyCard();
+
+            UserService.makeVote(this.imageURL,true)
+            .then(
+                data => {
+                    console.log(data);
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        }
     }
 
 }
@@ -150,10 +161,7 @@ export default {
         width: 400px;
         height: 600px;
 
-        left: 50%;
-        right: 50%;
-        top: 25%;
-
+        top: 10%;
         background-color: brown;
         border-radius: 20px;
         border: 0;

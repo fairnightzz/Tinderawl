@@ -10,7 +10,7 @@
             >
                 <!--p>Item {{i}}</p-->
                 <!--img src="https://cdn.discordapp.com/avatars/485120501807579144/cab57c05abc948c09aca10ffc25d1301.webp?size=1024"/-->
-                <img :src="galleryItem"/>
+                <img :src="galleryItem.url"/>
             </div>
 
         </div>
@@ -26,13 +26,24 @@ export default {
 
     data: function() {
         return {
-            /*
-            galleryItems: [
-                'a','b','c','d','e','f','g','h','i'
-            ],
-            */
+
             galleryItems: []
         }
+    },
+
+    methods: {
+        
+        imageDimensions: function(imageURL) {
+
+            const self = this;
+
+            var img = new Image();
+            img.onload = function() {
+                self.galleryItems.push({url: imageURL, width: this.width, height: this.height});
+            };
+            img.src = imageURL;
+        }
+
     },
 
     mounted: function() {
@@ -40,7 +51,10 @@ export default {
         UserService.getGalleryPictures()
         .then(
             data => {
-                this.galleryItems = data.pics;
+                for (var url of data.pics) {
+                    this.imageDimensions(url);
+                }
+
             },
             error => {
                 console.log(error);
@@ -61,7 +75,7 @@ export default {
         gap: 1rem;
         padding: 1rem;
 
-        grid-template-columns: repeat(auto-fit, minmax(var(--grid-size),1fr));
+        grid-template-columns: repeat(auto-fill, minmax(var(--grid-size),1fr));
         grid-auto-rows: var(--grid-size);
     }
 
@@ -84,7 +98,7 @@ export default {
         height: 100%;
         width: 100%;
 
-        background-color: var(--bg-secondary);
+        /*background-color: var(--bg-secondary);*/
         color: white;
 
         cursor: pointer;
@@ -98,6 +112,7 @@ export default {
 
     .image-card:hover {
         transform: scale(1.1);
+        box-shadow: 0 2px 5px black;
     }
 
     @keyframes load-image {
