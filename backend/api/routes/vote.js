@@ -100,7 +100,7 @@ router.get('/',checkAuth,(req,res, next) => {
 router.post('/',checkAuth,(req,res,next) => {
     const request = {
         id: req.userData.id,
-        pic: req.body.pic.substring(29,req.body.pic.length),
+        pic: req.body.pic.substring(process.env.SERVER_LINK.length,req.body.pic.length),
         verdict: req.body.verdict
     }
     let db = new sqlite3.Database('./databases/database.db', function(error){

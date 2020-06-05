@@ -41,9 +41,8 @@ export default {
 
     data: function() {
         return {
-            //cards: [ ]
-            cards: ["http://localhost:3000/static/QUiAHEUeHB.jpg",
-        "http://localhost:3000/static/JjpJwcEONq.png"]
+            cards: [ ]
+            
         }
     },
 
