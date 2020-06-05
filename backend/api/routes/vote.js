@@ -30,21 +30,38 @@ router.get('/',checkAuth,(req,res, next) => {
                     var nameorder = []
                     var namepicdict = {};
                     var order = row.remaining.split(",")
-                    
-                    let newsql = 'SELECT name,num FROM pic';
-                    db.all(newsql,[], (err,row1) =>{
-                        if (err){
-                            throw err;
-                        }
-                        row1.forEach((row2) =>{
-                            namepicdict[row2.num] = row2.name;
-                        })
+                    if (order[0] != ""){
+                        let newsql = 'SELECT name,num FROM pic';
+                        db.all(newsql,[], (err,row1) =>{
+                            if (err){
+                                throw err;
+                            }
+                            row1.forEach((row2) =>{
+                                namepicdict[row2.num] = row2.name;
+                            })
 
-                        for (var i = 0;i<order.length;i++){
-                            console.log(order[i])
-                            nameorder.push("http://localhost:3000/static/"+namepicdict[order[i].toString()]);
-                        }
+                            for (var i = 0;i<order.length;i++){
+                                console.log(order[i])
+                                nameorder.push(process.env.SERVER_LINK+namepicdict[order[i].toString()]);
+                            }
+                                
+                            db.close(function(error){
+                                if (error){
+                                    console.log(error)
+                                }
+                                else{
+                                    console.log("DB successfully closed")
+                                }
+                            })
+        
+                            res.status(200).json({
+                                pics:nameorder
+                            })
                             
+                            
+                        })
+                    }
+                    else{
                         db.close(function(error){
                             if (error){
                                 console.log(error)
@@ -55,11 +72,11 @@ router.get('/',checkAuth,(req,res, next) => {
                         })
     
                         res.status(200).json({
-                            pics:nameorder
+                            pics:[]
                         })
-                        
-                        
-                    })
+                    }
+                    
+                    
                 }
                 else{
                     db.close(function(error){
@@ -107,7 +124,6 @@ router.post('/',checkAuth,(req,res,next) => {
                 sql = 'SELECT name FROM pic WHERE num = ?';
                 db.get(sql,[parseInt(picarray[0])], (err,row1) =>{
                     if (row1){
-                        console.log(row1.name)
                         if(row1.name == request.pic){
                             //Remove the pic from remaining
                             var votedPic = picarray.shift()
@@ -122,7 +138,6 @@ router.post('/',checkAuth,(req,res,next) => {
                                         }
                                         else{
                                             likearray.push(votedPic);
-                                            console.log(likearray)
                                             sql = 'UPDATE user SET like = ? WHERE id = ?';
                                             db.get(sql,[likearray.join(),request.id],(err,row4) =>{
                                                 db.close(function(error){
