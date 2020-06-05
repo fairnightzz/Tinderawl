@@ -1,6 +1,5 @@
 const express = require('express');
 var image = require("../image");
-const keys = require('../../keys');
 const router = express.Router();
 
 const sqlite3 = require('sqlite3').verbose();
@@ -15,7 +14,7 @@ router.post('/', (req, res, next) => {
         key: req.body.key
     }
 
-    if (request.key == keys.key()){
+    if (request.key == process.env.key){
         var discordID = parseInt(request.ID);
     
         let db = new sqlite3.Database('./databases/database.db', function(error){
