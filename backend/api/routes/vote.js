@@ -55,7 +55,7 @@ router.get('/',checkAuth,(req,res, next) => {
                         })
     
                         res.status(200).json({
-                            pic:nameorder
+                            pics:nameorder
                         })
                         
                         
@@ -71,7 +71,7 @@ router.get('/',checkAuth,(req,res, next) => {
                         }
                     })
                     res.status(409).json({
-                        pic: null
+                        pics: null
                     })
                 }
         }
@@ -83,7 +83,7 @@ router.get('/',checkAuth,(req,res, next) => {
 router.post('/',checkAuth,(req,res,next) => {
     const request = {
         id: req.userData.id,
-        pic: req.body.pic,
+        pic: req.body.pic.substring(29,req.body.pic.length),
         verdict: req.body.verdict
     }
     let db = new sqlite3.Database('./databases/database.db', function(error){
@@ -134,7 +134,7 @@ router.post('/',checkAuth,(req,res,next) => {
                                                     }
                                                 })
                                                 res.status(200).json({
-                                                    pic:"updated"
+                                                    message:"updated"
                                                 })
                                             })
                                             
@@ -144,7 +144,7 @@ router.post('/',checkAuth,(req,res,next) => {
                                 else{
                                     db.close()
                                     res.status(200).json({
-                                        pic:"updated"
+                                        message:"updated"
                                     })
                                 }
                                 
@@ -164,7 +164,7 @@ router.post('/',checkAuth,(req,res,next) => {
                                 }
                             })
                             res.status(409).json({
-                                pic: "Not the pic that needs to be removed"
+                                message: "Not the pic that needs to be removed"
                             })
                         }
                     }
@@ -178,7 +178,7 @@ router.post('/',checkAuth,(req,res,next) => {
                             }
                         })
                         res.status(409).json({
-                            pic: "pic not found in db, shouldnt happen"
+                            message: "pic not found in db, shouldnt happen"
                         })
                     }
                 })
