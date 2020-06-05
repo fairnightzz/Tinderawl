@@ -51,9 +51,9 @@ export default {
     methods: {
         removeCard() {
             this.cards.shift();
-            console.log('event: destroy card');
+            //console.log('event: destroy card');
             
-            console.log(this.cards)
+            //console.log(this.cards)
         },
         onAcceptButton() {
             if (this.$refs.draggableCard[0] == null) { return; }

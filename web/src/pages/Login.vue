@@ -32,8 +32,11 @@
                 <button class="input-submit" @click="onSubmit">Login</button>
             </div>
 
+            <!-- v-text="'</> made with love'" -->
             <div class="row justify-content-md-center">
-                <p style="color: white; padding: .5rem; font-size: 12px" v-text="'</> made with love'"></p>
+                <a href="https://github.com/fairnightzz/Tinderawl" style="text-decoration-color: white">
+                    <p style="color: white; padding: .5rem; font-size: 12px" v-text="'</> happy birthday fadilah'"></p>
+                </a>
             </div>
             <!--p>{{ formStatus }}</p-->
 

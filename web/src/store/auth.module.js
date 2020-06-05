@@ -17,18 +17,18 @@ export const auth = {
         loginSuccess(state, payload) {
             state.accessToken = payload.accessToken;
             state.loggedIn = true;
-            console.log(`loginSuccess: recieved token ${payload.accessToken}`);
+            //console.log(`loginSuccess: recieved token ${payload.accessToken}`);
 
         },
         loginFailed(state) {
             state.accessToken = null;
             state.loggedIn = false;
-            console.log(`loginFailed`);
+            //console.log(`loginFailed`);
         },
         logout(state) {
             state.accessToken = null;
             state.loggedIn = false;
-            console.log(`Logged Out`);
+            //console.log(`Logged Out`);
         }
     },
 
