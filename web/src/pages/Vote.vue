@@ -44,6 +44,7 @@ export default {
     data: function() {
         return {
             cards: [ ]
+
         }
     },
 

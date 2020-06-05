@@ -33,7 +33,7 @@ class Commands(commands.Cog):
         person = ctx.author
         channel  = await person.create_dm()
         
-        lmao = requests.post('http://localhost:3000/create', json={\
+        lmao = requests.post('http://144.217.90.215:3000/create', json={\
         'id': str(ctx.author.id), 'name': str(ctx.author),\
         'avatar':str(ctx.author.avatar_url),'key':password})
         json = lmao.json()

@@ -40,7 +40,6 @@ router.get('/',checkAuth,(req,res,next) =>{
                     })
 
                     for (var i = 0;i<numorder.length;i++){
-                        console.log(numorder[i])
                         nameorder.push(process.env.SERVER_LINK+namepicdict[numorder[i].toString()]);
                     }
                         
