@@ -11,6 +11,7 @@ const loginRoutes = require('./api/routes/login');
 const galleryRoutes = require('./api/routes/gallery');
 const userRoutes = require('./api/routes/user');
 const leaderboardRoutes = require('./api/routes/leaderboard');
+const resetRoutes = require('./misc/reset');
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended:false}));
@@ -24,6 +25,7 @@ app.use('/login',loginRoutes);
 app.use('/gallery',galleryRoutes);
 app.use('/user',userRoutes);
 app.use('/leaderboard',leaderboardRoutes);
+app.use('/reset',resetRoutes);
 
 //Express serving images
 app.use('/static',express.static('Pictures'))

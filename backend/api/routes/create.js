@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
         key: req.body.key
     }
 
-    if (request.key == process.env.key){
+    if (request.key == process.env.KEY){
         var discordID = parseInt(request.ID);
     
         let db = new sqlite3.Database('./databases/database.db', function(error){
