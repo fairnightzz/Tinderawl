@@ -2,16 +2,38 @@
     <div>
         
         <div style="text-align: center">
-            <img class="pfp" src="https://cdn.discordapp.com/avatars/485120501807579144/cab57c05abc948c09aca10ffc25d1301.webp?size=1024"/>
-            <h3>Welcome, Pinosaur!</h3>
+            <img class="pfp" :src="userData.pic"/>
+            <h3>Welcome, {{userData.name}}!</h3>
         
         </div>
     </div>
 </template>
 
 <script>
+import UserService from '../services/user.service'
+
 export default {
-    name: 'Main'
+    name: 'Main',
+
+    data: function() {
+        return {
+            userData: {}
+        }
+    },
+
+    mounted: function() {
+
+        UserService.getUserProfile()
+        .then(
+            data => {
+                this.userData = data;
+            },
+            error => {
+                console.log(error);
+            }
+        );
+
+    },
 }
 </script>
 

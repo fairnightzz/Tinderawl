@@ -5,12 +5,14 @@
         ref="interactElement"
         v-bind:style="{'transform': `${translate} ${rotate}`}"
     >
-        <p>{{this.title}}</p>
+        <p>{{this.imageURL}}</p>
+        <img :src="this.imageURL" style="width: 100%"/>
     </div>
 
 </template>
 
 <script>
+import UserService from '../services/user.service'
 import interact from 'interactjs'
 
 export default {
@@ -18,7 +20,7 @@ export default {
 
     props: [
         'isCurrent',
-        'title'
+        'imageURL',
     ],
 
     static: {
@@ -74,16 +76,33 @@ export default {
                 
                 const {acceptThreshold} = this.$options.static;
                 //check if we are liking or disliking the card
-                if (this.position.x < -acceptThreshold) {
+                if (this.position.x < -acceptThreshold) { //swipe left
                     this.setPosition(-1000,this.position.y);
                     this.destroyCard();
                     //send request
-                    
+                    UserService.makeVote(this.imageURL,false)
+                    .then(
+                        data => {
+                            console.log(data);
+                        },
+                        err => {
+                            console.log(err);
+                        }
+                    );
 
                 } else if (this.position.x > acceptThreshold) {
                     this.setPosition(1000,this.position.y);
                     this.destroyCard();
 
+                    UserService.makeVote(this.imageURL,true)
+                    .then(
+                        data => {
+                            console.log(data);
+                        },
+                        err => {
+                            console.log(err);
+                        }
+                    );
 
                 } else {
                     this.setPosition(0,0); //reset position

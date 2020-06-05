@@ -7,16 +7,19 @@
                 :key="card" 
                 v-bind:style="{'z-index': -i}"
                 :isCurrent="i === 0"
-                :title="card.title"
+                :imageURL="card"
                 @destroyCard="removeCard"
-            ></draggable-card>
+            />
+                
         </div>
 
     </div>
 </template>
 
 <script>
+import UserService from '../services/user.service'
 import DraggableCard from '../components/DraggableCard.vue'
+
 export default {
     name: 'Vote',
 
@@ -26,20 +29,9 @@ export default {
 
     data: function() {
         return {
-            cards: [
-                {
-                    title: 'card1'
-                },
-                {
-                    title: 'card2'
-                },
-                {
-                    title: 'card3'
-                },
-                {
-                    title: 'card4'
-                },
-            ]
+            //cards: [ ]
+            cards: ["http://localhost:3000/static/QUiAHEUeHB.jpg",
+        "http://localhost:3000/static/JjpJwcEONq.png"]
         }
     },
 
@@ -50,6 +42,20 @@ export default {
             
             console.log(this.cards)
         }
+    },
+
+    mounted: function() {
+        
+        UserService.getVotingPictures()
+        .then(
+            data => {
+                this.cards = data.pics;
+            },
+            err => {
+                console.log(err);
+            }
+        );
+        
     }
 }
 </script>
