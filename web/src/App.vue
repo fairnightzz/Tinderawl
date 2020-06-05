@@ -4,7 +4,7 @@
 		<!-- Prob move transition logic inside child -->
 		<navbar/>
 
-		<router-view class="page"/>
+		<router-view class="page" style="background-color: var(--bg-secondary)"/>
 		
 	</div>
 </template>
@@ -35,16 +35,26 @@ export default {
 
 		--text-primary: gray;
 		--text-secondary: white;
-		
+		/*
 		--bg-primary: #008080;
 		--bg-primary-light: #139696;
 		--bg-primary-dark: 	#006868;
 
 		--bg-secondary: #0C2B74;
 		--bg-secondary-dark: #07215D;
+		*/
+		--bg-primary: #FE3C73;
+		--bg-primary-light: #FD1054;
+		--bg-primary-dark: 	#FE6792;
+
+		--bg-secondary: #FAB7B7;
+
 
 		--navbar-width: 5rem;
 
+		font-family: sans-serif;
+
+		background-color: var(--bg-secondary);
 	}
 
 	html {

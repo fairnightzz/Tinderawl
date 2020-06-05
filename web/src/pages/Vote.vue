@@ -3,7 +3,7 @@
 
         <div style="display: flex; align-items: center; justify-content: center;"> 
 
-            <h3>{{cards.length>0?`Pics remaining: ${cards.length}`:'All done!'}}</h3>
+            <h3 style="position: absolute; top: 2rem; color: #404040">{{cards.length>0?`Pics remaining: ${cards.length}`:'All done!'}}</h3>
             
             <draggable-card 
                 v-for="ind in (this.cards.length>=2?2:this.cards.length)" 
@@ -15,13 +15,15 @@
                 @destroyCard="removeCard"
             />
 
+            <div style="position: absolute; top: 45rem">
             <button class="circle-button" @click.prevent="onRejectButton">
-                <font-awesome-icon style="color: grey" icon="times" size="2x" />	
+                <font-awesome-icon style="color: #606060" icon="times" size="2x" />	
             </button>
 
             <button class="circle-button" @click.prevent="onAcceptButton">
-                <font-awesome-icon style="color: pink" icon="heart" size="2x" />	
+                <font-awesome-icon style="color: var(--bg-primary)" icon="heart" size="2x" />	
             </button>
+            </div>
                 
         </div>
 
@@ -41,9 +43,7 @@ export default {
 
     data: function() {
         return {
-            //cards: [ ]
-            cards: ["http://localhost:3000/static/QUiAHEUeHB.jpg",
-        "http://localhost:3000/static/JjpJwcEONq.png"]
+            cards: [ ]
         }
     },
 
@@ -65,7 +65,9 @@ export default {
     },
 
     mounted: function() {
-        
+        if (!this.$store.state.auth.loggedIn) {
+            this.$router.push('/login');
+        }
         UserService.getVotingPictures()
         .then(
             data => {
@@ -90,8 +92,9 @@ export default {
         outline: 0;
         border: 0;
         border-radius: 50%;
+        margin: .5rem;
 
-        box-shadow: 0 1px 5px black;
+        box-shadow: 0 1px 2px black;
     }
 
     .circle-button:active {

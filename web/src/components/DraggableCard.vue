@@ -9,7 +9,8 @@
     >
     
         <!--p>{{this.imageURL}}</p-->
-        <img :src="this.imageURL" style="width: 100%;"/>
+        <img :src="this.imageURL" class="card-img"/>
+        <font-awesome-icon style="color: var(--bg-primary-dark); position: absolute; bottom: 1rem; right: 1rem" icon="fire" size="2x" />
     </div>
 
 </template>
@@ -162,14 +163,16 @@ export default {
         height: 600px;
 
         top: 10%;
-        background-color: brown;
+        background-color: white;
         border-radius: 20px;
-        border: 0;
+        border: 4px solid var(--bg-primary-dark);
         margin: auto;
 
         pointer-events: none;
 
         overflow: hidden;
+
+
 
     }
 
@@ -178,19 +181,20 @@ export default {
     }
 
     .top-card {
-        background-color: blue;
         color: white;
         pointer-events: auto;
-        box-shadow: 2px 2px 5px black;
+
     }
 
-    @keyframes animateCardRelease {
-        from {
-            
-        }
-        to {
-
-        }
+    .card-img {
+        width: 100%; 
+        position: absolute; 
+        top: 50%; 
+        transform: translateY(-50%);
+        /*
+        border-top: 5px solid var(--bg-primary-dark);
+        border-bottom: 5px solid var(--bg-primary-dark);*/
     }
+
 
 </style>

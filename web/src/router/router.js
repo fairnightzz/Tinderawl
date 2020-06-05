@@ -16,7 +16,7 @@ export const router = new VueRouter({
 		{ path: '/main', component: Main },
 		{ path: '/login', component: Login },
 		{ path: '/vote', component: Vote },
-		{ path: '/gallery', component: Gallery },
+		{ path: '/liked', component: Gallery },
 		{ path: '/leaderboard', component: Leaderboard },
 		{ path: '/profile/:id', component: Profile },
 		{ path: '*', component: Notfound}

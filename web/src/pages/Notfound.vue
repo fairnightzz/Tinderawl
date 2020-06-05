@@ -4,7 +4,11 @@
 
 <script>
 export default {
-    name: 'Notfound'
+    name: 'Notfound',
+
+    mounted: function() {
+        this.$router.push('/login');
+    }
 }
 </script>
 

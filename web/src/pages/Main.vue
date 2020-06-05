@@ -4,7 +4,7 @@
         <div style="text-align: center; height: 100%">
 
             <img class="pfp" :src="userData.pic"/>
-            <h3 style="margin: 2rem">Welcome, {{userData.name}}!</h3>
+            <h3 style="margin: 2rem; color: #404040 ">Welcome, {{userData.name}}!</h3>
         
         </div>
     </div>
@@ -23,7 +23,9 @@ export default {
     },
 
     mounted: function() {
-
+        if (!this.$store.state.auth.loggedIn) {
+            this.$router.push('/login');
+        }
         UserService.getUserProfile()
         .then(
             data => {

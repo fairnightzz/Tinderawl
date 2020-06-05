@@ -50,7 +50,11 @@ export default {
     },
 
     mounted: function() {
-        
+
+        if (!this.$store.state.auth.loggedIn) {
+            this.$router.push('/login');
+        }
+
         UserService.getGalleryPictures()
         .then(
             data => {

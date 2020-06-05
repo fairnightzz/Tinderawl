@@ -2,7 +2,7 @@
 
     <div class="login-main">
 
-        <div class="container" style="padding-top: 3rem">
+        <div class="container" style="padding-top: 5rem">
 
             <div class="row justify-content-md-center">
                 <div class="col-md-auto" style="padding-right: .5rem">
@@ -32,6 +32,9 @@
                 <button class="input-submit" @click="onSubmit">Login</button>
             </div>
 
+            <div class="row justify-content-md-center">
+                <p style="color: white; padding: .5rem; font-size: 12px" v-text="'</> made with love'"></p>
+            </div>
             <!--p>{{ formStatus }}</p-->
 
         </div>
@@ -79,6 +82,12 @@ export default {
             this.form.code = '';
         }
 
+    },
+
+    mounted: function() {
+        if (this.$store.state.auth.loggedIn) {
+            this.$router.push('/main');
+        }
     }
 }
 </script>
@@ -86,7 +95,7 @@ export default {
 <style scoped>
 
     .login-main {
-        background-color: var(--bg-primary);
+        background-color: var(--bg-primary) !important;
         width: auto;
         height: 100vh;
         margin: 0px;

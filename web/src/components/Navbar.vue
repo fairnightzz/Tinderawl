@@ -63,9 +63,9 @@ export default {
                     classes: 'nav-item'
                 },
                 {
-                    route: '/gallery',
-                    iconName: 'images',
-                    toolTip: 'Gallery',
+                    route: '/liked',
+                    iconName: 'heart',
+                    toolTip: 'Liked',
                     classes: 'nav-item'
                 },
                 /*
@@ -130,7 +130,7 @@ export default {
 	}
 
 	.nav-item:hover svg {
-		color: aqua;
+		color: #80cee1;
 	}
 	
 	.nav-item:last-child {
