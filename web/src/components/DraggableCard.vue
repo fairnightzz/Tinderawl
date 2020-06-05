@@ -8,7 +8,7 @@
         @rejectCard="handleReject"
     >
     
-        <p>{{this.imageURL}}</p>
+        <!--p>{{this.imageURL}}</p-->
         <img :src="this.imageURL" style="width: 100%;"/>
     </div>
 
@@ -168,6 +168,8 @@ export default {
         margin: auto;
 
         pointer-events: none;
+
+        overflow: hidden;
 
     }
 

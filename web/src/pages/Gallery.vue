@@ -5,12 +5,15 @@
 
             <div 
                 v-for="(galleryItem, i) in galleryItems" :key="i"
-                v-bind:class="{'image-card': true, 'image-tall': [].includes(i), 'image-wide': [].includes(i)}" 
+                v-bind:class="{'image-card': true, 'image-wide': (galleryItem.width>2*galleryItem.height), 'image-tall': (galleryItem.height>2*galleryItem.width), 'image-big': (!(galleryItem.width>2*galleryItem.height))&&(!(galleryItem.height>2*galleryItem.width))&&(Math.random()>0.9)}" 
                 v-bind:style="{'--animation-order': i}"
             >
                 <!--p>Item {{i}}</p-->
                 <!--img src="https://cdn.discordapp.com/avatars/485120501807579144/cab57c05abc948c09aca10ffc25d1301.webp?size=1024"/-->
-                <img :src="galleryItem.url"/>
+                <img 
+                    :src="galleryItem.url" 
+                    :class="[galleryItem.width>galleryItem.height?'image-height-fit':'image-width-fit']"
+                />
             </div>
 
         </div>
@@ -103,10 +106,15 @@ export default {
 
         cursor: pointer;
 
+        overflow: hidden;
+
     }
 
-    .image-card img {
+    .image-width-fit {
         width: 100%;
+    }
+
+    .image-height-fit {
         height: 100%;
     }
 
@@ -130,6 +138,11 @@ export default {
         }
 
         .image-wide {
+            grid-column: span 2 / auto;
+        }
+
+        .image-big {
+            grid-row: span 2 / auto;
             grid-column: span 2 / auto;
         }
     }

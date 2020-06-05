@@ -68,12 +68,14 @@ export default {
                     toolTip: 'Gallery',
                     classes: 'nav-item'
                 },
+                /*
                 {
                     route: '/leaderboard',
                     iconName: 'medal',
                     toolTip: 'Results',
                     classes: 'nav-item'
                 },
+                */
             ]
         }
     },

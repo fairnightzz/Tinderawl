@@ -60,7 +60,7 @@ export default {
         },
         onRejectButton() {
             if (this.$refs.draggableCard[0] == null) { return; }
-            this.$refs.draggableCard[0].rejectAccept();
+            this.$refs.draggableCard[0].handleReject();
         }
     },
 
