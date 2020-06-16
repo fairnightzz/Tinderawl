@@ -28,7 +28,7 @@ class Commands(commands.Cog):
     def __init__(self, client):
         self.client = client
         
-    @commands.command(help = "Send a code to verify your identity when doing the survey")
+    @commands.command(help = "Gives you a code to use on Tinderwal!")
     async def request(self,ctx):
         person = ctx.author
         channel  = await person.create_dm()
@@ -38,6 +38,7 @@ class Commands(commands.Cog):
         'avatar':str(ctx.author.avatar_url),'key':password})
         json = lmao.json()
         await channel.send(json['passcode'])
+        await channel.send("Now head over to https://fairnightzz.github.io/Tinderwal/ to vote now!")
         
 
 
