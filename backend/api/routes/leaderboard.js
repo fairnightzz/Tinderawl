@@ -22,7 +22,11 @@ router.get('/',checkAuth,(req,res,next) =>{
         var llist = []
         rows.forEach((row) =>{
             console.log(row.name)
-            llist.push([process.env.SERVER_LINK+row.name,row.vote])
+            const thing = {
+                pic:process.env.SERVER_LINK+row.name,
+                vote:row.vote
+            }
+            llist.push(thing)
         })
         db.close()
         res.status(200).json({
