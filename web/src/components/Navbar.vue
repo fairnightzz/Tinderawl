@@ -57,9 +57,9 @@ export default {
                     classes: 'nav-item'
                 },
                 {
-                    route: '/vote',
-                    iconName: 'poll',
-                    toolTip: 'Vote',
+                    route: '/leaderboard',
+                    iconName: 'medal',
+                    toolTip: 'Results',
                     classes: 'nav-item'
                 },
                 {
@@ -68,14 +68,7 @@ export default {
                     toolTip: 'Liked',
                     classes: 'nav-item'
                 },
-                /*
-                {
-                    route: '/leaderboard',
-                    iconName: 'medal',
-                    toolTip: 'Results',
-                    classes: 'nav-item'
-                },
-                */
+
             ]
         }
     },

@@ -30,6 +30,15 @@ class UserService {
             return response.data;
         });
     }
+
+    getLeaderboard() {
+
+        return axios.get(API_URL + '/leaderboard', {
+            headers: UserService.getAuthToken()
+        }).then(response => {
+            return response.data;
+        });
+    }
     
     makeVote(picURL, vote) {
         return axios.post(API_URL + '/vote', {
