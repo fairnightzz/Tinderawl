@@ -7,9 +7,10 @@
             </div>
 
             <div class="tier-body">
-                <img class="tier-img" v-for="(pic, j) in tierList[i].pics" :key="j" :src="pic.pic"
+                <img class="tier-img" v-for="(pic, j) in tierList[i].pics" :key="j" 
                     v-tippy="{placement: 'bottom', arrow: 'true'}"
                     :content="`Votes: ${pic.vote}`"
+                    :src="pic.pic"
                 />
             </div>
         </div>
@@ -84,7 +85,7 @@ export default {
 
     .tier-list {
         display: flex;
-        width: 60%;
+        width: 75%;
         flex-direction: column;
         top: 5rem;
         position: absolute;
@@ -97,22 +98,22 @@ export default {
     }
     .tier-label {
         width: 5rem;
-        height: 5rem;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .tier-body {
-        height: 5rem;
-        background-color: white;
+        display: flex;
+        background-color: #1a1a1a;
         width: 100%;
+        flex-wrap: wrap; 
     }
 
     .tier-img {
         transition: all .3s; 
         width: 5rem;
-        height: 100%;
+        height: 5rem;
         overflow: hidden;
     }
 
