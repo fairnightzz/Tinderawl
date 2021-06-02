@@ -68,7 +68,12 @@ export default {
                     toolTip: 'Liked',
                     classes: 'nav-item'
                 },
-
+                {
+                    route: '/vote',
+                    iconName: 'poll',
+                    toolTip: 'Vote',
+                    classes: 'nav-item'
+                }
             ]
         }
     },
