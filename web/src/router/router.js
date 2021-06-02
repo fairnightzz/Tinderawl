@@ -17,6 +17,7 @@ export const router = new VueRouter({
 		{ path: '/liked', component: Gallery },
 		{ path: '/leaderboard', component: Leaderboard },
 		{ path: '/profile/:id', component: Profile },
+    { path: '/vote', component: Vote },
 		{ path: '*', component: Notfound}
 	],
 	mode: 'history',
