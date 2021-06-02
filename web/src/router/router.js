@@ -6,6 +6,7 @@ import Main from '../pages/Main.vue'
 import Gallery from '../pages/Gallery.vue'
 import Leaderboard from '../pages/Leaderboard.vue'
 import Profile from '../pages/Profile.vue'
+import Vote from '../pages/Vote.vue'
 import Notfound from '../pages/Notfound.vue'
 
 Vue.use(VueRouter);
