@@ -35,7 +35,7 @@
             <!-- v-text="'</> made with love'" -->
             <div class="row justify-content-md-center">
                 <a href="https://github.com/fairnightzz/Tinderwal" style="text-decoration-color: white">
-                    <p style="color: white; padding: .5rem; font-size: 12px" v-text="'</> have a wonderful day!'"></p>
+                    <p style="color: white; padding: .5rem; font-size: 12px">{{ messages[Math.round(Math.random()*(messages.length-1))] }}</p>
                 </a>
             </div>
             <!--p>{{ formStatus }}</p-->
@@ -56,7 +56,16 @@ export default {
             form: {
                 code: '',
             },
-            formStatus: 'unsubmitted'
+            formStatus: 'unsubmitted',
+            messages: [
+              "Have a wonderful day!",
+              "Why do developers wear glasses? Because they can't C.",
+              "What is a web developer's favourite tea? URL Grey.",
+              "What do you call a web developer who likes to find bugs? A spider.",
+              "May the force be with Vue.",
+              "Too lazy to react, I only vue! (joking)",
+              "Your Vue matters."
+            ]
         }
     },
 
