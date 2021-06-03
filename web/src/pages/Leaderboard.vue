@@ -61,7 +61,7 @@ export default {
         UserService.getLeaderboard()
         .then(
             data => {
-                const thresh = [17,14,12,10,0]
+                const thresh = [6,5,4,3,0]
                 for (const pic of data.pics) {
                     for (var t = 0; t < thresh.length; t++) {
                         if (pic.vote > thresh[t]) {
